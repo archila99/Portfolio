@@ -7,7 +7,8 @@ import {
   type Position,
 } from '../game/snakeLogic'
 
-const CELL_SIZE = 20
+const CELL_SIZE_DESKTOP = 20
+const CELL_SIZE_MOBILE = 14
 const INITIAL_SPEED = 150
 
 function getRandomCell(): Position {
@@ -30,6 +31,7 @@ export default function Game() {
   const [paused, setPaused] = useState(false)
   const [dead, setDead] = useState(false)
   const [score, setScore] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
   const initialSnake: Position[] = [{ x: 10, y: 10 }]
   const [snake, setSnake] = useState<Position[]>(initialSnake)
   const [food, setFood] = useState<Position>(() =>
@@ -40,6 +42,23 @@ export default function Game() {
   const foodRef = useRef(food)
   const gameLoopRef = useRef<number>(0)
   foodRef.current = food
+  const cellSize = isMobile ? CELL_SIZE_MOBILE : CELL_SIZE_DESKTOP
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 768px)')
+    const fn = () => setIsMobile(mq.matches)
+    fn()
+    mq.addEventListener('change', fn)
+    return () => mq.removeEventListener('change', fn)
+  }, [])
+
+  const setDir = useCallback((d: Direction) => {
+    if (dead) return
+    if (d === 'up' && direction !== 'down') nextDirRef.current = 'up'
+    if (d === 'down' && direction !== 'up') nextDirRef.current = 'down'
+    if (d === 'left' && direction !== 'right') nextDirRef.current = 'left'
+    if (d === 'right' && direction !== 'left') nextDirRef.current = 'right'
+  }, [direction, dead])
 
   const reset = useCallback(() => {
     const startSnake: Position[] = [{ x: 10, y: 10 }]
@@ -103,138 +122,147 @@ export default function Game() {
     return () => window.removeEventListener('keydown', handleKey)
   }, [direction, dead, paused, playing])
 
+  const btnBase = {
+    padding: '0.5rem 1.25rem',
+    border: '1px solid var(--border)',
+    borderRadius: 8,
+    fontWeight: 600,
+  }
+
   return (
-    <section
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        padding: '2rem 1rem',
-      }}
-    >
-      <h1 style={{ marginBottom: '1rem' }}>Snake</h1>
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '1.5rem',
-          marginBottom: '1rem',
-        }}
-      >
-        <span style={{ color: 'var(--text-muted)' }}>Score:</span>
-        <span
-          id="score_value"
+    <section className="game-page">
+      <div className="game-container">
+        <h1 className="game-title">Snake</h1>
+        <div className="game-score-bar">
+          <div className="game-stat">
+            <span className="game-stat-label">Score</span>
+            <span id="score_value" className="game-stat-value game-stat-accent">
+              {score}
+            </span>
+          </div>
+          <div className="game-stat">
+            <span className="game-stat-label">Length</span>
+            <span className="game-stat-value game-stat-success">
+              {snake.length}
+            </span>
+          </div>
+          <div className="game-buttons">
+            {!playing && !dead && (
+              <button
+                onClick={() => setPlaying(true)}
+                style={{ ...btnBase, backgroundColor: 'var(--success)', color: 'var(--bg)', border: 'none' }}
+              >
+                Play
+              </button>
+            )}
+            {playing && !dead && (
+              <button
+                onClick={() => setPaused((p) => !p)}
+                style={{ ...btnBase, backgroundColor: 'var(--surface)', color: 'var(--text)' }}
+              >
+                {paused ? 'Resume' : 'Pause'}
+              </button>
+            )}
+            {(playing || dead) && (
+              <button
+                onClick={reset}
+                style={{
+                  ...btnBase,
+                  backgroundColor: dead ? 'var(--danger)' : 'var(--surface)',
+                  color: 'var(--text)',
+                }}
+              >
+                Restart
+              </button>
+            )}
+          </div>
+        </div>
+        {paused && playing && !dead && (
+          <p className="game-message game-message-muted">Paused. Tap Resume or press Space.</p>
+        )}
+        {dead && (
+          <p className="game-message game-message-danger">Game over. Tap Restart to play again.</p>
+        )}
+        <div
+          className="game-board"
           style={{
-            fontSize: '1.5rem',
-            fontWeight: 700,
-            color: 'var(--accent)',
+            width: GRID_SIZE * cellSize,
+            height: GRID_SIZE * cellSize,
+            gridTemplateColumns: `repeat(${GRID_SIZE}, ${cellSize}px)`,
+            gridTemplateRows: `repeat(${GRID_SIZE}, ${cellSize}px)`,
           }}
         >
-          {score}
-        </span>
-        <span style={{ color: 'var(--text-muted)' }}>Length:</span>
-        <span
-          style={{
-            fontSize: '1.5rem',
-            fontWeight: 700,
-            color: 'var(--success)',
-          }}
-        >
-          {snake.length}
-        </span>
-        {!playing && !dead && (
-          <button
-            onClick={() => setPlaying(true)}
-            style={{
-              padding: '0.5rem 1.25rem',
-              backgroundColor: 'var(--success)',
-              color: 'var(--bg)',
-              border: 'none',
-              borderRadius: 6,
-              fontWeight: 600,
-            }}
-          >
-            Play
-          </button>
-        )}
-        {playing && !dead && (
-          <button
-            onClick={() => setPaused((p) => !p)}
-            style={{
-              padding: '0.5rem 1.25rem',
-              backgroundColor: 'var(--surface)',
-              color: 'var(--text)',
-              border: '1px solid var(--border)',
-              borderRadius: 6,
-              fontWeight: 600,
-            }}
-          >
-            {paused ? 'Resume' : 'Pause'}
-          </button>
-        )}
-        {(playing || dead) && (
-          <button
-            onClick={reset}
-            style={{
-              padding: '0.5rem 1.25rem',
-              backgroundColor: dead ? 'var(--danger)' : 'var(--surface)',
-              color: 'var(--text)',
-              border: '1px solid var(--border)',
-              borderRadius: 6,
-              fontWeight: 600,
-            }}
-          >
-            Restart
-          </button>
-        )}
-      </div>
-      {paused && playing && !dead && (
-        <p style={{ color: 'var(--text-muted)', marginBottom: '1rem' }}>
-          Paused. Press Space or click Resume to continue.
+          {Array.from({ length: GRID_SIZE * GRID_SIZE }, (_, i) => {
+            const x = i % GRID_SIZE
+            const y = Math.floor(i / GRID_SIZE)
+            const isSnake = snake.some((s) => s.x === x && s.y === y)
+            const isFood = food.x === x && food.y === y
+            return (
+              <div
+                key={i}
+                style={{
+                  width: cellSize - 1,
+                  height: cellSize - 1,
+                  backgroundColor: isSnake
+                    ? 'var(--success)'
+                    : isFood
+                      ? 'var(--danger)'
+                      : 'transparent',
+                  borderRadius: isSnake || isFood ? 2 : 0,
+                }}
+              />
+            )
+          })}
+        </div>
+        <div className="game-arrows">
+          <div className="game-arrows-row">
+            <span />
+            <button
+              type="button"
+              className="game-arrow-btn"
+              onClick={() => setDir('up')}
+              aria-label="Up"
+            >
+              ▲
+            </button>
+            <span />
+          </div>
+          <div className="game-arrows-row">
+            <button
+              type="button"
+              className="game-arrow-btn"
+              onClick={() => setDir('left')}
+              aria-label="Left"
+            >
+              ◀
+            </button>
+            <span />
+            <button
+              type="button"
+              className="game-arrow-btn"
+              onClick={() => setDir('right')}
+              aria-label="Right"
+            >
+              ▶
+            </button>
+          </div>
+          <div className="game-arrows-row">
+            <span />
+            <button
+              type="button"
+              className="game-arrow-btn"
+              onClick={() => setDir('down')}
+              aria-label="Down"
+            >
+              ▼
+            </button>
+            <span />
+          </div>
+        </div>
+        <p className="game-hint">
+          {isMobile ? 'Use arrows or swipe' : 'Use arrow keys to move'}
         </p>
-      )}
-      {dead && (
-        <p style={{ color: 'var(--danger)', marginBottom: '1rem' }}>
-          Game over. Hit Restart to play again.
-        </p>
-      )}
-      <div
-        style={{
-          width: GRID_SIZE * CELL_SIZE,
-          height: GRID_SIZE * CELL_SIZE,
-          backgroundColor: 'var(--surface)',
-          border: '2px solid var(--border)',
-          borderRadius: 8,
-          display: 'grid',
-          gridTemplateColumns: `repeat(${GRID_SIZE}, ${CELL_SIZE}px)`,
-          gridTemplateRows: `repeat(${GRID_SIZE}, ${CELL_SIZE}px)`,
-        }}
-      >
-        {Array.from({ length: GRID_SIZE * GRID_SIZE }, (_, i) => {
-          const x = i % GRID_SIZE
-          const y = Math.floor(i / GRID_SIZE)
-          const isSnake = snake.some((s) => s.x === x && s.y === y)
-          const isFood = food.x === x && food.y === y
-          return (
-            <div
-              key={i}
-              style={{
-                width: CELL_SIZE - 1,
-                height: CELL_SIZE - 1,
-                backgroundColor: isSnake
-                  ? 'var(--success)'
-                  : isFood
-                    ? 'var(--danger)'
-                    : 'transparent',
-                borderRadius: isSnake || isFood ? 2 : 0,
-              }}
-            />
-          )
-        })}
       </div>
-      <p style={{ marginTop: '1rem', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
-        Use arrow keys to move
-      </p>
     </section>
   )
 }

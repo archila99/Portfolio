@@ -1,12 +1,13 @@
 export default function Footer() {
   const contacts = [
-    { label: 'LinkedIn', href: 'https://linkedin.com/in/alibek-kerimov/', icon: 'in' },
-    { label: 'Instagram', href: 'https://www.instagram.com/archila_001/', icon: 'ig' },
-    { label: 'GitHub', href: 'https://github.com/archila99', icon: 'gh' },
+    { label: 'LinkedIn', href: 'https://linkedin.com/in/alibek-kerimov/', hideOnMobile: false },
+    { label: 'Instagram', href: 'https://www.instagram.com/archila_001/', hideOnMobile: false },
+    { label: 'GitHub', href: 'https://github.com/archila99', hideOnMobile: true },
   ]
 
   return (
     <footer
+      className="site-footer"
       style={{
         backgroundColor: 'var(--surface)',
         borderTop: '1px solid var(--border)',
@@ -18,12 +19,13 @@ export default function Footer() {
         flexWrap: 'wrap',
       }}
     >
-      {contacts.map(({ label, href }) => (
+      {contacts.map(({ label, href, hideOnMobile }) => (
         <a
           key={label}
           href={href}
           target={href.startsWith('http') ? '_blank' : undefined}
           rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+          className={hideOnMobile ? 'footer-hide-mobile' : ''}
           style={{
             color: 'var(--text-muted)',
             fontSize: '0.95rem',
@@ -32,10 +34,8 @@ export default function Footer() {
           {label}
         </a>
       ))}
-      <div style={{
-            color: 'var(--text-muted)',
-            fontSize: '0.95rem',}}>
-              +447946061199
+      <div style={{ color: 'var(--text-muted)', fontSize: '0.95rem' }}>
+        +447946061199
       </div>
     </footer>
   )
