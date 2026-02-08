@@ -11,26 +11,25 @@ export type Project = {
 const projects: Project[] = [
   {
     id: '1',
-    title: 'Image Color Detector',
-    description: 'Tool that identifies whether images are monochrome or colorful and automatically separates them into corresponding folders',
-    url: 'https://color-detector-72hg.onrender.com/',
-    logoVariant: 'intro',
+    title: 'Video & Image Processing',
+    description: 'Web app that extracts frames from videos (with adjustable time range and interval) and classifies images as color or monochrome.',
+    url: 'https://video-image-processing-e-30530.web.app/',
+    logoVariant: 'video',
   },
   {
     id: '2',
-    title: 'Travel Cost Estimator',
-    description: 'Application that lets users calculate trip costs and fuel consumption for multiple vehicles and routes instantly',
-    url: 'https://travel-estimator-1000853843394.europe-west2.run.app/',
-    logoVariant: 'default',
+    title: 'NASA Data Visualization Platform',
+    description: 'A full-stack web application that fetches data from multiple NASA APIs and visualizes it through interactive charts and diagrams.',
+    url: 'https://nasa-data-viz.web.app',
+    logoVariant: 'nasa',
   },
   {
     id: '3',
-    title: 'Frameshot',
-    description: 'Product that extracts frames from videos, automatically detecting video duration and setting valid time ranges',
-    url: 'https://frameshot.onrender.com/',
-    logoVariant: 'intro',
+    title: 'Travel Cost Estimator',
+    description: 'Web app lets users calculate trip costs and fuel consumption for multiple vehicles and routes instantly.',
+    url: 'https://travel-estimator-1000853843394.europe-west2.run.app/',
+    logoVariant: 'travel',
   },
-  // Add more: logoVariant 'intro' | 'default' or add new in PixelProjectLogo
 ]
 
 export default function Projects() {

@@ -65,7 +65,7 @@ export default function About() {
             textAlign: 'center',
           }}
         >
-          I am a software engineer passionate about building full-stack web applications that solve 
+          I am <strong style={{ color: 'var(--accent)', fontWeight: 700 }}>Alibek Kerimov</strong>, a software engineer passionate about building full-stack web applications that solve 
           real-world problems and improve user experiences. I deliver end-to-end solutions that enhance 
           efficiency, reduce manual work, and combine clean architecture with intuitive interfaces.
         </p>

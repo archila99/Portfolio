@@ -15,15 +15,25 @@ const PALETTE: Record<string, string> = {
 }
 
 const LOGOS: Record<string, string[]> = {
-  intro: [
+  video: [
+    '_D_D_D_D',
+    'PPPPPPPP',
+    'PCCCCCCP',
+    'PCCCCCCP',
+    'PCCCCCCP',
+    'PPPPPPPP',
+    '_D_D_D_D',
+    '________',
+  ],
+  nasa: [
     '___PP___',
-    '__PPP___',
-    '___P____',
-    '___P____',
-    '___P____',
-    '___P____',
-    '__PPP___',
-    '_PPPP___',
+    '__PPPP__',
+    '_PPCCPP_',
+    'PPCCCCPP',
+    '__PPCCPP',
+    '___PP___',
+    '__PPPP__',
+    '_PP__PP_',
   ],
   default: [
     '__DDDD__',
@@ -34,6 +44,16 @@ const LOGOS: Record<string, string[]> = {
     'DC____CD',
     '_DCCCCD_',
     '__DDDD__',
+  ],
+  travel: [
+    '___CC___',
+    '__CCCC__',
+    '_CCCCCC_',
+    'CCCCCCCC',
+    '_C____C_',
+    '_C____C_',
+    '__CCCC__',
+    '___CC___',
   ],
 }
 
