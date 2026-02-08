@@ -27,7 +27,7 @@ const projects: Project[] = [
     id: '3',
     title: 'Travel Cost Estimator',
     description: 'Web app lets users calculate trip costs and fuel consumption for multiple vehicles and routes instantly.',
-    url: 'https://travel-estimator-1000853843394.europe-west2.run.app/',
+    url: 'https://travel-estimator-r5y2jd5kga-uc.a.run.app/',
     logoVariant: 'travel',
   },
 ]
