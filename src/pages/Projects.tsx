@@ -30,6 +30,13 @@ const projects: Project[] = [
     url: 'https://travel-estimator-r5y2jd5kga-uc.a.run.app/',
     logoVariant: 'travel',
   },
+  {
+    id: '4',
+    title: 'Movie-Selection',
+    description: 'Web app to browse and select movies with search, filtering, and detailed information.',
+    url: 'https://movie-selection-pi.vercel.app/',
+    logoVariant: 'movie',
+  },
 ]
 
 export default function Projects() {

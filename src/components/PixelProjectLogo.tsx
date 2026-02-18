@@ -45,6 +45,16 @@ const LOGOS: Record<string, string[]> = {
     '_DCCCCD_',
     '__DDDD__',
   ],
+  movie: [
+    '__PPP__P',
+    '_PPCCCP_',
+    'PPCCCCPP',
+    'PPCCCCPP',
+    '_PPCCCP_',
+    '__PPPP__',
+    '___PP___',
+    '__PPPP__',
+  ],
   travel: [
     '___CC___',
     '__CCCC__',
