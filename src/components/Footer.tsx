@@ -2,7 +2,7 @@ export default function Footer() {
   const contacts = [
     { label: 'LinkedIn', href: 'https://linkedin.com/in/alibek-kerimov/', hideOnMobile: false },
     { label: 'Instagram', href: 'https://www.instagram.com/archila_001/', hideOnMobile: false },
-    { label: 'GitHub', href: 'https://github.com/archila99', hideOnMobile: true },
+    { label: 'GitHub', href: 'https://github.com/archila99', hideOnMobile: false },
   ]
 
   return (
@@ -34,9 +34,6 @@ export default function Footer() {
           {label}
         </a>
       ))}
-      <div style={{ color: 'var(--text-muted)', fontSize: '0.95rem' }}>
-        +447946061199
-      </div>
     </footer>
   )
 }

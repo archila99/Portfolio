@@ -21,18 +21,18 @@ const PIXEL_ART = [
   '_HHHFFFFFFFFHHH_',
   '_HHFFFFFFFFFFHH_',
   '_HHFFFFFFFFFFFHH_',
-  '_HFFWWWFFWWWFFH_',
-  '_HFFWEEFFEEWFFH_',
-  '_HFFWWWFFWWWFFH_',
-  '_HFFFFFNNNFFFFH_',
-  '_FFFFFFFFFFFFFHH_',
-  '_FFFFFFLLFFFFF_',
-  '_HFFFFFLLLFFFFF_',
-  '_HFFFFFFFFFFF_',
-  '_HFFFFFFFFFFFHH_',
+  '_HFFWWWFFWWWFFH__',
+  '_HFFWEEFFEEWFFH__',
+  '_HFFWWWFFWWWFFH__',
+  '_HFFFFFNNNFFFFH__',
+  '_HHFFFFFFFFFFFHH_',
+  '_HFFFFFLLLFFFFFHH_',
+  '_HFFFFFLLLFFFFFHH_',
+  '_HHFFFFFFFFFFFHH_',
+  '_HHFFFFFFFFFFFHH_',
   '___HHHHHHHHHH___',
-  '_______________',
-].map((row) => row.split(''))
+  '________________',
+].map((row) => row.padEnd(16, '_').slice(0, 16).split(''))
 
 const SIZE = GRID_SIZE * PIXEL_SIZE
 
