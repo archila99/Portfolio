@@ -11,31 +11,38 @@ export type Project = {
 const projects: Project[] = [
   {
     id: '1',
-    title: 'Video & Image Processing',
-    description: 'Web app that extracts frames from videos (with adjustable time range and interval) and classifies images as color or monochrome.',
-    url: 'https://video-image-processing-e-30530.web.app/',
-    logoVariant: 'video',
+    title: 'EventBooking',
+    description: 'A full-stack ticket reservation and purchase system with roles (Admin, Artist, User), venues, time slots, events, and atomic capacity handling.',
+    url: 'https://ticket-book-467176802427.europe-west2.run.app/',
+    logoVariant: 'event',
   },
   {
     id: '2',
-    title: 'NASA Data Visualization Platform',
-    description: 'A full-stack web application that fetches data from multiple NASA APIs and visualizes it through interactive charts and diagrams.',
-    url: 'https://nasa-data-viz.web.app',
-    logoVariant: 'nasa',
-  },
-  {
-    id: '3',
     title: 'Travel Cost Estimator',
     description: 'Web app lets users calculate trip costs and fuel consumption for multiple vehicles and routes instantly.',
     url: 'https://travel-estimator-r5y2jd5kga-uc.a.run.app/',
     logoVariant: 'travel',
   },
   {
-    id: '4',
+    id: '3',
     title: 'Movie-Selection',
     description: 'Web app to browse and select movies with search, filtering, and detailed information.',
     url: 'https://movie-selection-pi.vercel.app/',
     logoVariant: 'movie',
+  },
+  {
+    id: '4',
+    title: 'Video & Image Processing',
+    description: 'Web app that extracts frames from videos (with adjustable time range and interval) and classifies images as color or monochrome.',
+    url: 'https://video-image-processing-e-30530.web.app/',
+    logoVariant: 'video',
+  },
+  {
+    id: '5',
+    title: 'NASA Data Visualization Platform',
+    description: 'A full-stack web application that fetches data from multiple NASA APIs and visualizes it through interactive charts and diagrams.',
+    url: 'https://nasa-data-viz.web.app',
+    logoVariant: 'nasa',
   },
 ]
 

@@ -55,6 +55,16 @@ const LOGOS: Record<string, string[]> = {
     '___PP___',
     '__PPPP__',
   ],
+  event: [
+    '__CCCC__',
+    '_CCCCCC_',
+    'CCPPPPCC',
+    'CCPPPPCC',
+    'CCPPPPCC',
+    '_CCCCCC_',
+    '__CCCC__',
+    '___DD___',
+  ],
   travel: [
     '___CC___',
     '__CCCC__',
