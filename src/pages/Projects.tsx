@@ -20,7 +20,7 @@ const projects: Project[] = [
     id: '2',
     title: 'Travel Cost Estimator',
     description: 'Web app lets users calculate trip costs and fuel consumption for multiple vehicles and routes instantly.',
-    url: 'https://travel-estimator-r5y2jd5kga-uc.a.run.app/',
+    url: 'https://travel-cost-estimoator-9zdko8fpe-archila99s-projects.vercel.app/',
     logoVariant: 'travel',
   },
   {
