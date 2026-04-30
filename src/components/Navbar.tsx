@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom'
+import PixelProjectLogo from './PixelProjectLogo'
 
 const navItems = [
   { to: '/', label: 'ABOUT' },
@@ -8,34 +9,27 @@ const navItems = [
 
 export default function Navbar() {
   return (
-    <nav
-      style={{
-        position: 'sticky',
-        top: 0,
-        zIndex: 100,
-        backgroundColor: 'var(--surface)',
-        borderBottom: '1px solid var(--border)',
-        padding: '1rem 2rem',
-        display: 'flex',
-        justifyContent: 'center',
-        gap: '2rem',
-      }}
-    >
-      {navItems.map(({ to, label }) => (
-        <NavLink
-          key={to}
-          to={to}
-          end={to === '/'}
-          style={({ isActive }) => ({
-            color: isActive ? 'var(--accent)' : 'var(--text)',
-            fontWeight: 600,
-            letterSpacing: '0.1em',
-            textDecoration: 'none',
-          })}
-        >
-          {label}
+    <header className="site-nav">
+      <div className="container site-nav-inner">
+        <NavLink to="/" end className="brand">
+          <PixelProjectLogo variant="header" />
+          <span>AK_portfolio</span>
         </NavLink>
-      ))}
-    </nav>
+        <nav className="nav-links" aria-label="Primary">
+          {navItems.map(({ to, label }) => (
+            <NavLink
+              key={to}
+              to={to}
+              end={to === '/'}
+              className={({ isActive }) =>
+                `nav-link ${isActive ? 'nav-link-active' : ''}`
+              }
+            >
+              {label}
+            </NavLink>
+          ))}
+        </nav>
+      </div>
+    </header>
   )
 }

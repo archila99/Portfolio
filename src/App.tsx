@@ -7,7 +7,7 @@ import Game from './pages/Game'
 
 function App() {
   return (
-    <>
+    <div className="app-shell">
       <Navbar />
       <main style={{ flex: 1 }}>
         <Routes>
@@ -17,7 +17,7 @@ function App() {
         </Routes>
       </main>
       <Footer />
-    </>
+    </div>
   )
 }
 

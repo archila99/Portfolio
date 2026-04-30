@@ -65,6 +65,16 @@ const LOGOS: Record<string, string[]> = {
     '__CCCC__',
     '___DD___',
   ],
+  news: [
+    '__WWWW__',
+    '_WCCCCW_',
+    'WCPPPPCW',
+    'WCPPPPCW',
+    'WCPPPPCW',
+    '_WCCCCW_',
+    '__WWWW__',
+    '________',
+  ],
   travel: [
     '___CC___',
     '__CCCC__',

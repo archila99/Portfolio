@@ -6,34 +6,20 @@ export default function Footer() {
   ]
 
   return (
-    <footer
-      className="site-footer"
-      style={{
-        backgroundColor: 'var(--surface)',
-        borderTop: '1px solid var(--border)',
-        padding: '1.5rem 2rem',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        gap: '2rem',
-        flexWrap: 'wrap',
-      }}
-    >
-      {contacts.map(({ label, href, hideOnMobile }) => (
-        <a
-          key={label}
-          href={href}
-          target={href.startsWith('http') ? '_blank' : undefined}
-          rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
-          className={hideOnMobile ? 'footer-hide-mobile' : ''}
-          style={{
-            color: 'var(--text-muted)',
-            fontSize: '0.95rem',
-          }}
-        >
-          {label}
-        </a>
-      ))}
+    <footer className="site-footer">
+      <div className="container site-footer-inner">
+        {contacts.map(({ label, href, hideOnMobile }) => (
+          <a
+            key={label}
+            href={href}
+            target={href.startsWith('http') ? '_blank' : undefined}
+            rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+            className={`${hideOnMobile ? 'footer-hide-mobile ' : ''}footer-link`}
+          >
+            {label}
+          </a>
+        ))}
+      </div>
     </footer>
   )
 }

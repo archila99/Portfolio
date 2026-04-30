@@ -44,76 +44,40 @@ const projects: Project[] = [
     url: 'https://nasa-data-viz.web.app',
     logoVariant: 'nasa',
   },
+  {
+    id: '6',
+    title: 'US News',
+    description: 'Web app that displays US news with a clean UI for browsing headlines and reading articles.',
+    url: 'https://news-beta-drab.vercel.app/',
+    logoVariant: 'news',
+  },
 ]
 
 export default function Projects() {
   return (
-    <section
-      style={{
-        maxWidth: 800,
-        margin: '0 auto',
-        padding: '3rem 1.5rem',
-      }}
-    >
-      <h1
-        style={{
-          fontSize: '1.75rem',
-          marginBottom: '2rem',
-          textAlign: 'center',
-        }}
-      >
-        Projects
-      </h1>
-      <ul
-        style={{
-          listStyle: 'none',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '1.5rem',
-        }}
-      >
-        {projects.map((project) => (
-          <li key={project.id}>
+    <section className="page">
+      <div className="container">
+        <h1 className="section-title">Projects</h1>
+        <div className="projects-grid">
+          {projects.map((project) => (
             <a
+              key={project.id}
               href={project.url}
               target="_blank"
               rel="noopener noreferrer"
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '1rem',
-                padding: '1.25rem',
-                backgroundColor: 'var(--surface)',
-                border: '1px solid var(--border)',
-                borderRadius: 8,
-                textDecoration: 'none',
-                color: 'var(--text)',
-                transition: 'border-color 0.2s, box-shadow 0.2s',
-              }}
-              onMouseOver={(e) => {
-                e.currentTarget.style.borderColor = 'var(--accent)'
-                e.currentTarget.style.boxShadow = '0 0 0 1px var(--accent)'
-              }}
-              onMouseOut={(e) => {
-                e.currentTarget.style.borderColor = 'var(--border)'
-                e.currentTarget.style.boxShadow = 'none'
-              }}
+              className="project-card"
             >
               <PixelProjectLogo variant={project.logoVariant ?? 'default'} />
               <div>
-                <strong style={{ display: 'block', marginBottom: 4 }}>
-                  {project.title}
-                </strong>
+                <div className="project-title">{project.title}</div>
                 {project.description && (
-                  <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>
-                    {project.description}
-                  </span>
+                  <div className="project-desc">{project.description}</div>
                 )}
               </div>
             </a>
-          </li>
-        ))}
-      </ul>
+          ))}
+        </div>
+      </div>
     </section>
   )
 }

@@ -130,8 +130,9 @@ export default function Game() {
   }
 
   return (
-    <section className="game-page">
-      <div className="game-container">
+    <section className="page game-page">
+      <div className="container" style={{ display: 'flex', justifyContent: 'center' }}>
+        <div className="game-container">
         <h1 className="game-title">Snake</h1>
         <div className="game-score-bar">
           <div className="game-stat">
@@ -262,6 +263,7 @@ export default function Game() {
         <p className="game-hint">
           {isMobile ? 'Use arrows or swipe' : 'Use arrow keys to move'}
         </p>
+        </div>
       </div>
     </section>
   )
