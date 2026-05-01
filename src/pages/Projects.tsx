@@ -34,7 +34,7 @@ const projects: Project[] = [
     id: '4',
     title: 'Video & Image Processing',
     description: 'Web app that extracts frames from videos (with adjustable time range and interval) and classifies images as color or monochrome.',
-    url: 'https://video-image-processing-e-30530.web.app/',
+    url: 'https://video-color-analyzer.vercel.app/',
     logoVariant: 'video',
   },
   {
