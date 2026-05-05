@@ -13,7 +13,7 @@ const projects: Project[] = [
     id: '1',
     title: 'EventBooking',
     description: 'A full-stack ticket reservation and purchase system with roles (Admin, Artist, User), venues, time slots, events, and atomic capacity handling.',
-    url: 'https://ticket-book-467176802427.europe-west2.run.app/',
+    url: 'https://event-posting-app-nine.vercel.app/',
     logoVariant: 'event',
   },
   {
